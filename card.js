@@ -1,21 +1,73 @@
-const form = document.getElementById("card-form");
-const businessCard = document.getElementById("business-card");
-let firstName;
-let secondName;
-let company;
-let jobTitle;
-let email;
-let phoneNumber;
+const form = document.getElementById('card-form');
+const isAlphabet = document.getElementsByClassName('only-alpha');
+const inputs = document.getElementsByTagName('input');
+const firstErr = document.getElementById('first-err');
+const secondErr = document.getElementById('second-err');
+const companyErr = document.getElementById('company-err');
+const emailErr = document.getElementById('email-err');
+const jobErr = document.getElementById('job-err');
+const phoneErr = document.getElementById('number-err');
+const firstName = document.getElementById('first-name');
+const secondName = document.getElementById('second-name');
+const companyName = document.getElementById('company-name');
+const jobTitle = document.getElementById('job-title');
+const email = document.getElementById('email');
+const phoneNumber = document.getElementById('phone-number');
 
-form.addEventListener("submit", (event) => {
-  //   event;
-  firstName = event.target[0].value;
-  secondName = event.target[1].value;
-  company = event.target[2].value;
-  jobTitle = event.target[3].value;
-  email = event.target[4].value;
-  phoneNumber = event.target[5].value;
+Array.from(isAlphabet).forEach(function (element) {
+	element.addEventListener('keyup', (event) => {
+		const input = event.target.value;
+		const target = event.target;
+		const targetErr = target.nextElementSibling;
+		if (/[^A-Za-z]/.test(input)) {
+			targetErr.innerText = 'Can only include alphabet';
+			target.classList.remove('invalid', 'valid');
+			target.classList.add('invalid');
+		} else {
+			targetErr.innerText = '';
+			target.classList.remove('invalid', 'valid');
+			target.classList.add('valid');
+		}
+	});
+});
 
-  businessCard.innerHTML = `Name :${firstName} ${secondName} ${company} ${jobTitle} ${email} ${phoneNumber}`;
-  event.preventDefault();
+email.addEventListener('blur', (event) => {
+	const input = event.target.value;
+	const target = event.target;
+	const targetErr = target.nextElementSibling;
+	const emailRegex =
+		/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (!emailRegex.test(input)) {
+		targetErr.innerText = 'Must be a valid email';
+		target.classList.remove('invalid', 'valid');
+		target.classList.add('invalid');
+	} else {
+		targetErr.innerText = '';
+		target.classList.remove('invalid', 'valid');
+		target.classList.add('valid');
+	}
+});
+
+phoneNumber.addEventListener('keyup', (event) => {
+	const input = event.target.value;
+	const target = event.target;
+	const targetErr = target.nextElementSibling;
+	if (/[^0-9]/.test(input)) {
+		targetErr.innerText = 'Must be a valid phone number';
+		target.classList.remove('invalid', 'valid');
+		target.classList.add('invalid');
+	} else {
+		targetErr.innerText = '';
+		target.classList.remove('invalid', 'valid');
+		target.classList.add('valid');
+	}
+});
+
+form.addEventListener('submit', (event) => {
+	Array.from(inputs).forEach(function (element) {
+		if (element.value === '') {
+			console.log('in valid');
+			event.preventDefault();
+		}
+	});
 });

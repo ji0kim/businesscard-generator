@@ -9,22 +9,29 @@
     <title>business card form</title>
   </head>
   <body>
-    <form id="card-form" action="./cardInfo.html" method="get">
+    <form id="card-form" action="./cardInfo.html" method="GET">
       <label for="first-name">First Name</label>
-      <input type="text" name="firstName" id="first-name" required />
+      <input type="text" name="firstName" id="first-name" class="only-alpha" />
+      <p id="first-err"></p>
       <label for="second-name">Second Name</label>
-      <input type="text" name="secondName" id="second-name" required />
+      <input type="text" name="secondName" id="second-name" class="only-alpha" />
+      <p id="second-err"></p>
       <label for="company">Company Name</label>
-      <input type="text" name="companyName" id="company-name" required />
+      <input type="text" name="companyName" id="company-name" />
+      <p id="company-err"></p>
       <label for="job-title">Job Title</label>
-      <input type="text" name="jobTitle" id="job-title" required />
+      <input type="text" name="jobTitle" id="job-title" class="only-alpha" />
+      <p id="job-err"></p>
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" required />
+      <input type="email" name="email" id="email" />
+      <p id="email-err"></p>
       <label for="phone-number">Phone Number</label>
-      <input type="number" name="phoneNumber" id="phone-number" required />
+      <input type="tel" name="phoneNumber" id="phone-number" />
+      <p id="number-err"></p>
       <button>Submit</button>
     </form>
-
-    <section id="business-card"></section>
+    <section id="business-card">
+    
+    </section>
   </body>
 </html>
