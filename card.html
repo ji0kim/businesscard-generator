@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./card.css" />
+    <script src="./card.js" defer></script>
+    <title>business card form</title>
+  </head>
+  <body>
+    <form id="card-form" action="./cardInfo.html" method="get">
+      <label for="first-name">First Name</label>
+      <input type="text" name="firstName" id="first-name" required />
+      <label for="second-name">Second Name</label>
+      <input type="text" name="secondName" id="second-name" required />
+      <label for="company">Company Name</label>
+      <input type="text" name="companyName" id="company-name" required />
+      <label for="job-title">Job Title</label>
+      <input type="text" name="jobTitle" id="job-title" required />
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required />
+      <label for="phone-number">Phone Number</label>
+      <input type="number" name="phoneNumber" id="phone-number" required />
+      <button>Submit</button>
+    </form>
+
+    <section id="business-card"></section>
+  </body>
+</html>
