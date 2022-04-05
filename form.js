@@ -1,44 +1,42 @@
 const form = document.getElementById('card-form');
 const isAlphabet = document.getElementsByClassName('only-alpha');
 const inputs = document.getElementsByTagName('input');
-const firstErr = document.getElementById('first-err');
-const secondErr = document.getElementById('second-err');
-const companyErr = document.getElementById('company-err');
-const emailErr = document.getElementById('email-err');
-const jobErr = document.getElementById('job-err');
-const phoneErr = document.getElementById('number-err');
-const firstName = document.getElementById('first-name');
-const secondName = document.getElementById('second-name');
-const companyName = document.getElementById('company-name');
-const jobTitle = document.getElementById('job-title');
 const email = document.getElementById('email');
 const phoneNumber = document.getElementById('phone-number');
+// click 이벤트 바인딩 한다.
+// 온리알파 / 구별해서 에러메시지 수정
 
-Array.from(isAlphabet).forEach(function (element) {
-	element.addEventListener('keyup', (event) => {
-		const input = event.target.value;
-		const target = event.target;
-		const targetErr = target.nextElementSibling;
-		if (/[^A-Za-z]/.test(input)) {
-			targetErr.innerText = 'Can only include alphabet';
-			target.classList.remove('invalid', 'valid');
-			target.classList.add('invalid');
-		} else {
-			targetErr.innerText = '';
-			target.classList.remove('invalid', 'valid');
-			target.classList.add('valid');
-		}
-	});
-});
+// form.addEventListener('click', (event) => {
+// 	let errMsg;
+// 	const target = event.target;
+// 	if (target && target.classList.contains('only-alpha')) {
+// 		errMsg = 'Must be a valid email';
+// 	}
+// 	if (target.classList.contains('button')) {
+// 		errMsg = 'Must be a valid email';
+// 	}
+// });
 
-email.addEventListener('blur', (event) => {
-	const input = event.target.value;
+form.addEventListener('keyup', (event) => {
+	let errMsg;
+	let regex;
 	const target = event.target;
+	const input = event.target.value;
 	const targetErr = target.nextElementSibling;
-	const emailRegex =
-		/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	if (!emailRegex.test(input)) {
-		targetErr.innerText = 'Must be a valid email';
+
+	if (target.classList.contains('only-alpha')) {
+		errMsg = 'Can only include alphabet';
+		regex = /[A-Za-z]/;
+	}
+
+	if (target.id === 'phone-number') {
+		console.log(target.id);
+		errMsg = 'Can only include number';
+		regex = /[0-9]/;
+	}
+
+	if (!regex.test(input)) {
+		targetErr.innerText = errMsg;
 		target.classList.remove('invalid', 'valid');
 		target.classList.add('invalid');
 	} else {
@@ -48,12 +46,21 @@ email.addEventListener('blur', (event) => {
 	}
 });
 
-phoneNumber.addEventListener('keyup', (event) => {
-	const input = event.target.value;
+form.addEventListener('blur', (event) => {
+	let errMsg;
+	let regex;
 	const target = event.target;
 	const targetErr = target.nextElementSibling;
-	if (/[^0-9]/.test(input)) {
-		targetErr.innerText = 'Must be a valid phone number';
+	const input = event.target.value;
+
+	if (event.target.classList.contains('only-alpha')) {
+		errMsg = 'Must be a valid email';
+	}
+	regex =
+		/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	label.classList.add('on');
+	if (!emailRegex.test(input)) {
+		targetErr.innerText = errMsg;
 		target.classList.remove('invalid', 'valid');
 		target.classList.add('invalid');
 	} else {
@@ -66,7 +73,6 @@ phoneNumber.addEventListener('keyup', (event) => {
 form.addEventListener('submit', (event) => {
 	Array.from(inputs).forEach(function (element) {
 		if (element.value === '') {
-			console.log('in valid');
 			event.preventDefault();
 		}
 	});

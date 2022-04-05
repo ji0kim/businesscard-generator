@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/reset.css" />
   <link rel="stylesheet" href="./css/style.css" />
-  <script src="./businessCard.js" defer></script>
+  <script src="./form.js" defer></script>
   <title>Business card form</title>
 </head>
 
@@ -15,24 +15,24 @@
   <main>
     <form id="card-form" action="./cardInfo.html" method="GET">
       <label for="first-name">First Name</label>
-      <input type="text" name="firstName" id="first-name" class="only-alpha" />
-      <span id="first-err"></span>
+      <input type="text" name="firstName" id="first-name" class="only-alpha" autocomplete="off" />
+      <span class="err-msg"></span>
       <label for="second-name">Second Name</label>
-      <input type="text" name="secondName" id="second-name" class="only-alpha" />
-      <span id="second-err"></span>
+      <input type="text" name="secondName" id="second-name" class="only-alpha" autocomplete="off" />
+      <span class="err-msg"></span>
       <label for="company">Company Name</label>
-      <input type="text" name="companyName" id="company-name" />
-      <span id="company-err"></span>
+      <input type="text" name="companyName" id="company-name" autocomplete="off" />
+      <span class="err-msg"></span>
       <label for="job-title">Job Title</label>
-      <input type="text" name="jobTitle" id="job-title" class="only-alpha" />
-      <span id="job-err"></span>
+      <input type="text" name="jobTitle" id="job-title" class="only-alpha" autocomplete="off" />
+      <span class="err-msg"></span>
       <label for="email">Email</label>
-      <input type="email" name="email" id="email" />
-      <span id="email-err"></span>
+      <input type="email" name="email" id="email" autocomplete="off" />
+      <span class="err-msg"></span>
       <label for="phone-number">Phone Number</label>
-      <input type="tel" name="phoneNumber" id="phone-number" />
-      <span id="number-err"></span>
-      <button>Submit</button>
+      <input type="tel" name="phoneNumber" id="phone-number" autocomplete="off" />
+      <span class="err-msg"></span>
+      <button class="submit">Submit</button>
     </form>
   </main>
 </body>
